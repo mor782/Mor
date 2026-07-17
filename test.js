@@ -19,13 +19,13 @@ test('check that empty array length is zero', (t) => {
 test('should return true if array contains null', (t) => {
     const testArray = [1, 2, null, 4, 5]; // מערך דמה קצר
     const result = hasNull(testArray);
-    
+
     assert.strictEqual(result, true);
 });
 
-test('should find null in a generated range', (t) => {
-    const testArray = []; // המערך המלא שלך
+test('should return false if array does not contain null', (t) => {
+    const testArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; // המערך המלא שלך
     const result = hasNull(testArray);
-    
+
     assert.strictEqual(result, false);
 });
