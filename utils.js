@@ -24,8 +24,19 @@ function arrNum(arr) {
     return arr.length;
 }
 
+
+function hasNull(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] === null) {
+            return true; // מצאנו null, אפשר לעצור ולצאת
+        }
+    }
+    return false; // עברנו על הכל ולא מצאנו
+}
 module.exports = {
     countLetters,
     countArr,
-    arrNum
+    arrNum,
+    hasNull
 };
+
