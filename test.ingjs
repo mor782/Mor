@@ -11,6 +11,6 @@ test('ceck letter count in word', (t) => {
 
 test('check that empty array length is zero', (t) => {
     const emptyArray = [];
-    const result =arrNum(emptyArray);
+    const result = arrNum(emptyArray);
     assert.strictEqual(result, 0);
 })

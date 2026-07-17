@@ -20,7 +20,7 @@ function countArr(arr) {
 console.log(countArr([]));
 console.log(countArr([1, 2, 3, 4]));
 
-function arrNum() {
+function arrNum(arr) {
     return arr.length;
 }
 
