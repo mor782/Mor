@@ -1,0 +1,16 @@
+const test = require('node:test');
+const assert = require('node:assert');
+
+
+const { countLetters, countArr, arrNum } = require('./utils');
+
+test('ceck letter count in word', (t) => {
+    const result = countLetters('Shecode', 'e');
+    assert.strictEqual(result, 2);
+});
+
+test('check that empty array length is zero', (t) => {
+    const emptyArray = [];
+    const result = getArrayLength(emptyArray);
+    assert.strictEqual(result, 0);
+})
