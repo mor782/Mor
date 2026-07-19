@@ -8,11 +8,11 @@ test('check calculate add number', (t) => {
     const result = myCalc.add(2, 3);
     const resultSub = myCalc.sub(4, 3);
     const resultMul = myCalc.mul(5, 5);
-    const resultDiv = myCalc.div(6, 2);
+    const resultDiv = myCalc.div(8, 2);
 
 
     assert.strictEqual(result, 5);
     assert.strictEqual(resultSub, 1);
     assert.strictEqual(resultMul, 25);
-    assert.strictEqual(resultDiv, 3);
+    assert.strictEqual(resultDiv, 4);
 })
