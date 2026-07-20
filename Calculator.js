@@ -2,14 +2,15 @@ const { trace } = require('node:console');
 const { Calculator } = require('./calculatTest');
 
 
-/*const calc1 = new Calculator();
+const calc1 = new Calculator();
 const resAdd = calc1.add(10, 5);
-const expAdd = 15;
+const expAdd = 999;
 
 if (resAdd === expAdd) {
     console.log(`✅ success ${resAdd}`);
 } else {
     console.log(`❌ failure -${expAdd} but recive ${resAdd}`);
+    process.exit(1);
 }
 
 
@@ -43,7 +44,7 @@ if (resDiv === expDiv) {
 } else {
     console.log(`❌ failure -${expDiv} but recive ${resDiv}`);
 }
-*/
+
 
 const calMetrics = {
     legalAction: 0,
