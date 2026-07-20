@@ -1,0 +1,72 @@
+name: Node.js CI/CD Pipeline
+
+# הטריגרים: מתי ה-Action ירוץ
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+jobs:
+  # --- ג'וב 1: רץ כאשר נפתח Pull Request ל-main ---
+  test-and-validate:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. מוריד את הקוד העדכני
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+
+      # 2. מתקין את סביבת Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # 3. מתקין תלויות חיצוניות
+      - name: Install dependencies
+        run: npm install
+
+      # 4. מריץ Tests (את הבדיקות שכתבת)
+      - name: Run Tests
+        run: node --test
+
+  # --- ג'וב 2: רץ כאשר יש Commit ישיר או מיזוג (Push) ל-main ---
+  build-and-deploy:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. מוריד את הקוד
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+
+      # 2. מה שמבוצע בשלבים הקודמים (התקנה ובדיקה לביטחון)
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Tests
+        run: node --test
+
+      # 3. בונה Container Image (שימוש ב-Action מוכן מה-Marketplace)
+      - name: Build Buildah Container Image
+        uses: redhat-actions/buildah-build@v2
+        with:
+          image: my-calculator-app
+          tags: latest
+          containerfiles: |
+            FROM node:20-alpine
+            WORKDIR /app
+            COPY . .
+            RUN npm install --omit=dev
+            CMD ["node", "calculator.js"]
+
+      # 4. מדפיס למסך "Deploying"
+      - name: Deploy application
+        run: echo "Deploying"
